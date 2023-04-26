@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(119, 5, 200) ;">
+  <a class="navbar-brand" href="#" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: black;">Task<span style="color:yellow ;">Routine</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <ng-container *ngIf="loginService.currentUserName != null && loginService.currentUserRole == 'Admin' ">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin','dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin','projects']">Project</a>
+        </li>
+
+      </ng-container>
+
+      <ng-container *ngIf="loginService.currentUserName != null && loginService.currentUserRole == 'Employee' ">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/employee','tasks']">Task</a>
+        </li>
+      </ng-container>
+
+      <ng-container  *ngIf="loginService.currentUserName == null" >
+        <li class="nav-item"  >
+          <a class="nav-link" [routerLink]="['/login']">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
+        </li>
+      </ng-container>
+      
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/about']">About</a>
+      </li>
+
+      <ng-container *ngIf="loginService.currentUserName != null">
+        <li class="nav-item" >
+          <a class="nav-link"  [routerLink]="['/myprofile']">{{loginService.currentUserName}}</a>
+      </li>
+        <li class="nav-item" *ngIf="loginService.currentUserName != null" >
+          <a class="nav-link" href="#" (click)="loginService.Logout()">Logout</a>
+      </li>    
+      </ng-container> 
+    </ul>
+    <!-- <form class="form-inline">
+      <div class="input-group" >
+        <div class="input-group-prepend" >
+          <span class="input-group-text" id="basic-addon1"><i class="fa-brands fa-searchengin"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <button class="btn btn-primary" type="button">Search</button>
+    </form> -->
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,63 @@
+<h1>Update the Task</h1>
+<form [formGroup]="newTaskForm" novalidate="novalidate" >
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group form-row">
+                <label for="taskName" class="text col-md-3 col-form-label">TaskName:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="taskName" placeholder="taskName" style="font-size:15px" autofocus="autofocus" formControlName="taskName" [(ngModel)]="taskName">
+                <span class="text-danger" *ngIf="newTaskForm.get('taskName').invalid && (newTaskForm.get('taskName').dirty || newTaskForm.get('taskName').touched || newTaskForm.submitted) && newTaskForm.get('taskName').errors?.required">TaskName can't be blank</span>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group form-row">
+                <label for="projectID" class="text col-md-3 col-form-label">Project:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="projectID" placeholder="Project" style="font-size:15px" autofocus="autofocus" formControlName="projectID" [(ngModel)]="currentTask.projectID">
+                <span class="text-danger" *ngIf="newTaskForm.get('projectID').invalid && (newTaskForm.get('projectID').dirty || newTaskForm.get('projectID').touched || newTaskForm.submitted) && newTaskForm.get('projectID').errors?.required">CreatedBycan't be blank</span>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group form-row">
+                <label for="createdBy" class="text col-md-3 col-form-label">Created By:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="createdBy" placeholder="Update" style="font-size:15px" autofocus="autofocus" formControlName="createdBy" [(ngModel)]="currentTask.createdBy" >
+                <span class="text-danger" *ngIf="newTaskForm.get('createdBy').invalid && (newTaskForm.get('createdBy').dirty || newTaskForm.get('createdBy').touched || newTaskForm.submitted) && newTaskForm.get('createdBy').errors?.required">CreatedBycan't be blank</span>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group form-row">
+              <label for="assignedTo" class="text col-md-3 col-form-label">Assigned To:</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="assignedTo" placeholder="Update" style="font-size:15px" autofocus="autofocus" formControlName="assignedTo" [(ngModel)]="currentTask.assignedTo">
+              <span class="text-danger" *ngIf="newTaskForm.get('assignedTo').invalid && (newTaskForm.get('assignedTo').dirty || newTaskForm.get('assignedTo').touched || newTaskForm.submitted) && newTaskForm.get('assignedTo').errors?.required">CreatedBycan't be blank</span>
+              </div>
+            </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group form-row">
+            <label for="description" class="text col-md-3 col-form-label">Last Update:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="description" placeholder="Update" style="font-size:15px" autofocus="autofocus" formControlName="description" [(ngModel)]="currentTask.description">
+            <span class="text-danger" *ngIf="newTaskForm.get('description').invalid && (newTaskForm.get('description').dirty || newTaskForm.get('description').touched || newTaskForm.submitted) && newTaskForm.get('description').errors?.required">CreatedBycan't be blank</span>
+            </div>
+          </div>
+    </div>
+    <div class="col-lg-12 border-top text-center"></div>
+    <div class="col-12" style="margin-top:50px ;">
+      <div class="form-group">
+        <label for="lastUpdatedOn" class="text">Updated:</label>
+        <textarea class="form-control" id="lastUpdatedOn" placeholder="enter the update" formControlName="lastUpdatedOn"></textarea>
+      </div>
+    </div>
+        <div class="col-lg-12 border-top text-center">
+          <div>
+            <button class="btn btn-success btn-lg mt-2" (click)="onUpdateTaskClick($event)">Update Task</button>
+          </div>
+          <a class="btn btn-info btn-sm mt-1" [routerLink]=" [ '/employee', 'tasks' ] ">Back to Tasks</a>
+        </div>
+    </div>
+</form>

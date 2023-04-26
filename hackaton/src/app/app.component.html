@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(119, 5, 200) ;">
+  <a class="navbar-brand" href="#" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: black;">Task<span style="color:yellow ;">Routine</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item"  *ngIf="loginService.currentUserName != null">
+        <a class="nav-link" routerLink="dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about">About</a>
+      </li>
+      <li class="nav-item"  *ngIf="loginService.currentUserName != null">
+        <a class="nav-link" routerLink="project">Project</a>
+      </li>
+      <li class="nav-item" *ngIf="loginService.currentUserName != null">
+        <a class="nav-link" href="#">{{loginService.currentUserName}}</a>
+    </li>
+    <li class="nav-item" *ngIf="loginService.currentUserName == null">
+      <a class="nav-link" routerLink="login">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="loginService.currentUserName != null">
+      <a class="nav-link" href="#" (click)="loginService.Logout()">Logout</a>
+    </li>
+      
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

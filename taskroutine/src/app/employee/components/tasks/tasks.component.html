@@ -1,0 +1,50 @@
+<h1>Tasks</h1>
+<a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>  
+<div class="row mt-1 mb-2">
+    <div class="col-lg-6 mb-1" *ngFor="let tasks of tasks">
+        <div class="card card-primary">
+            <div class="card-header">
+                <div class="card-title">
+                    <h4>{{tasks.taskName}}</h4>
+                    <h6>{{tasks.projectID}}</h6>
+                </div>
+            </div>
+            <div class="cardy-body" style="margin-left:10px ;">
+                <div ><b>Description:</b> {{tasks.description}}</div>
+                <div>
+                    <table class="table table-sm table-borderless">
+                        <tr>
+                            <td>Created By:</td>
+                            <td>
+                                <i class="fa-solid fa-user"></i>
+                                {{tasks.createdBy}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Assigned By:</td>
+                            <td>
+                                <i class="fa-solid fa-user"></i>
+                                {{tasks.assignedTo}}
+                            </td>
+                        </tr>
+                        <div style="margin-top: 10px;" >
+                        </div>
+                        <tr >
+                            <td><b>last Update :</b></td>
+                            <td>
+                                <i class="fa-solid fa-list-check"></i>
+                                <b> {{tasks.lastUpdatedOn}}</b></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer"> 
+                <div class="btn btn-primary" *ngIf="tasks.assignedTo == loginService.currentUserName">
+                    <a [routerLink]="['/employee','edittask',tasks.taskName]" style="color: white;"  >Update</a>
+                </div>  
+
+            </div>
+        </div>
+    </div>
+
+</div>

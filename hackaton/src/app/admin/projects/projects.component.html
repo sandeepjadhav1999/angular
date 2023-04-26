@@ -1,0 +1,151 @@
+<h1>Projects</h1>
+<div class="row">
+  <div class="col-8 mx-auto">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#newModal">Create Project</button>
+  </div>
+  <div class="col-8 mx-auto">
+    <table class="table">
+      <thead>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Team Size</th>
+        <th>Action</th>
+        <!-- <th>Delete</th> -->
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects, let i=index">
+          <td>{{project.projectName}}</td>
+          <td>{{project.description}}</td>
+          <td>{{project.teamSize}}</td>
+          <td>
+            <button class="btn btn-warning" (click)="onEditClick($event, i)" data-toggle="modal"data-target="#editModal">
+              Update
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-info" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form>
+  <div class="modal" role="dialog" id="newModal">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header bg-success">
+          <div class="modal-title"><b>New Project</b></div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label for="txtNewProjectName" class="col-sm-4 col-form-label"><b>Project Name</b></label>
+            <div class="col-sm-8">
+              <input type="text" id="txtNewProjectName" class="form-control" placeholder="Project Name"
+                name="ProjectName" [(ngModel)]="newProject.projectName">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtNewProjectDescription" class="col-sm-4 col-form-label"><b>Description</b></label>
+            <div class="col-sm-8">
+              <input type="text" id="txtNewProjectDescription" class="form-control" placeholder="Project Description"
+                name="projectDescription" [(ngModel)]="newProject.description">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtTeamSize" class="col-sm-4 col-form-label"><b>Team Size</b></label>
+            <div class="col-sm-8">
+              <input type="number" id="txtTeamSize" style="width:150px" class="form-control" placeholder="Team Size"
+                name="teamSize" [(ngModel)]="newProject.teamSize" >
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="save()" >Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- edit project -->
+
+<form>
+  <div class="modal" role="dialog" id="editModal">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header bg-success">
+          <div class="modal-title"><b>Update Project</b></div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label for="txteditProjectName" class="col-sm-4 col-form-label"><b>Project Name</b></label>
+            <div class="col-sm-8">
+              <input type="text" id="txteditProjectName" class="form-control" placeholder="Project Name"
+                name="ProjectName" [(ngModel)]="editProject.projectName" disabled="disabled">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txteditProjectDescription" class="col-sm-4 col-form-label"><b>Description</b></label>
+            <div class="col-sm-8">
+              <input type="text" id="txteditProjectDescription" class="form-control" placeholder="Project Description"
+                name="projectDescription" [(ngModel)]="editProject.description">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txteditTeamSize" class="col-sm-4 col-form-label"><b>Team Size</b></label>
+            <div class="col-sm-8">
+              <input type="number" id="txteditTeamSize" style="width:150px" class="form-control" placeholder="Team Size"
+                name="teamSize" [(ngModel)]="editProject.teamSize" >
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="update()" >Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- delete project -->
+<form>
+  <div class="modal" role="dialog" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header">
+          <div class="modal-title">Delete Project</div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="text-warning">Are you sure to delete this Project?</div>
+          <div class="form-group row">
+            <label for="txtDeleteProjectName" class="col-sm-4 col-form-label">Project Name</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtDeleteProjectName" class="form-control-plain-text" placeholder="Project Name"
+                name="ProjectName" [(ngModel)]="deleteProject.projectName" disabled="disabled">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="onDeleteConfirmClick()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
